@@ -1,11 +1,13 @@
 const express = require("express");
-const messageRouter = require("./message/router");
+const messageRouterFactory = require("./message/router");
 const bodyParser = require("body-parser");
 const Sse = require("json-sse");
 const messageModel = require("./message/model");
 
 const parserMiddleware = bodyParser.json();
 const stream = new Sse();
+const messageRouter = messageRouterFactory(stream);
+
 const app = express();
 
 const port = 4000;
