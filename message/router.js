@@ -11,4 +11,10 @@ router.get("/message", (req, res, nxt) => {
   });
 });
 
+router.post("/message", (req, res, nxt) => {
+  Message.create(req.body)
+    .then(message => res.send(message))
+    .catch(nxt);
+});
+
 module.exports = router;
